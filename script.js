@@ -159,38 +159,36 @@ function showResult(){
 function startTimer(time){
     counter = setInterval(timer, 1000);
     function timer(){
-        timeCount.textContent = time; //changing the value of timeCount with time value
-        time--; //decrement the time value
-        if(time < 9){ //if timer is less than 9
-            let addZero = timeCount.textContent; 
-            timeCount.textContent = "0" + addZero; //add a 0 before time value
-        }
-        if(time < 0){ //if timer is less than 0
-            clearInterval(counter); //clear counter
-            timeText.textContent = "Time End"; //change the time text to time off
-            const allOptions = option_list.children.length; //getting all option items
-            let correcAns = questions[que_count].answer; //getting correct answer from array
+        timeCount.textContent = time < 10 ? "0" + time : time; // Ensure two digits format
+        time--; // Decrement the time value
+
+        if(time < 0){ // If timer is less than 0
+            clearInterval(counter); // Clear counter
+            timeCount.textContent = "00"; // Show 00
+            timeText.textContent = "Time End"; // Change time text to Time End
+            const allOptions = option_list.children.length; // Getting all option items
+            let correcAns = questions[que_count].answer; // Getting correct answer from array
             for(i=0; i < allOptions; i++){
-                if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer
-                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+                if(option_list.children[i].textContent == correcAns){ // If there is an option which is matched to an array answer
+                    option_list.children[i].setAttribute("class", "option correct"); // Adding green color to matched option
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); // Adding tick icon to matched option
                     console.log("Time Off: Auto selected correct answer.");
                 }
             }
             for(i=0; i < allOptions; i++){
-                option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+                option_list.children[i].classList.add("disabled"); // Once user selects an option then disable all options
             }
-            next_btn.classList.add("show"); //show the next button if user selected any option
+            next_btn.classList.add("show"); // Show the next button if user selected any option
         }
     }
 }
 
 function startTimerLine(time){
-    counterLine = setInterval(timer, 29);
+    counterLine = setInterval(timer, 22);
     function timer(){
         time += 1; //upgrading time value with 1
         time_line.style.width = time + "px"; //increasing width of time_line with px by time value
-        if(time > 549){ //if time value is greater than 549
+        if(time > 550){ //if time value is greater than 549
             clearInterval(counterLine); //clear counterLine
         }
     }
