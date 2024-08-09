@@ -11,6 +11,20 @@ const timeCount = document.querySelector(".timer .timer_sec");
 // show info box
 info_box.classList.add("activeInfo"); //show info box
 
+document.addEventListener("DOMContentLoaded", function() {
+    questions = shuffleQuestions(questions); // Shuffle the questions
+    nextQuestion(); // Show the first question
+});
+
+function nextQuestion() {
+    if (que_count < questions.length) {
+        showQuetions(que_count);
+        que_count++;
+    } else {
+        console.log("Quiz Finished");
+    }
+}
+
 // if continueQuiz button clicked
 continue_btn.onclick = ()=>{
     info_box.classList.remove("activeInfo"); //hide info box
@@ -82,13 +96,21 @@ next_btn.onclick = ()=>{
 // getting questions and options from array
 function showQuetions(index){
     const que_text = document.querySelector(".que_text");
-
+    
     //creating a new span and div tag for question and option and passing the value using array index
     let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
     let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
     + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[4] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[5] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[6] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[7] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[8] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[9] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[10] +'</span></div>';
+    + '<div class="option"><span>'+ questions[index].options[11] +'</span></div>';
     que_text.innerHTML = que_tag; //adding new span tag inside que_tag
     option_list.innerHTML = option_tag; //adding new div tag inside option_tag
     
@@ -111,7 +133,7 @@ function optionSelected(answer){
     let correcAns = questions[que_count].answer; //getting correct answer from array
     const allOptions = option_list.children.length; //getting all option items
     
-    if(userAns == correcAns){ //if user selected option is equal to array's correct answer
+    if(userAns === correcAns){ //if user selected option is equal to array's correct answer
         userScore += 1; //upgrading score value with 1
         answer.classList.add("correct"); //adding green color to correct selected option
         answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
@@ -141,13 +163,13 @@ function showResult(){
     quiz_box.classList.remove("activeQuiz"); //hide quiz box
     result_box.classList.add("activeResult"); //show result box
     const scoreText = result_box.querySelector(".score_text");
-    if (userScore > 3){ // if user scored more than 3
+    if (userScore > 5 ){ // if user scored more than 3
         //creating a new span tag and passing the user score number and total question number
         let scoreTag = '<span>congrats! , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
         scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
     }
     else if(userScore > 1){ // if user scored more than 1
-        let scoreTag = '<span>and nice , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
+        let scoreTag = '<span>and Need to Improve  , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
         scoreText.innerHTML = scoreTag;
     }
     else{ // if user scored less than 1
