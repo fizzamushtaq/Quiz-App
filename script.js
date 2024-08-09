@@ -11,19 +11,6 @@ const timeCount = document.querySelector(".timer .timer_sec");
 // show info box
 info_box.classList.add("activeInfo"); //show info box
 
-document.addEventListener("DOMContentLoaded", function() {
-    questions = shuffleQuestions(questions); // Shuffle the questions
-    nextQuestion(); // Show the first question
-});
-
-function nextQuestion() {
-    if (que_count < questions.length) {
-        showQuetions(que_count);
-        que_count++;
-    } else {
-        console.log("Quiz Finished");
-    }
-}
 
 // if continueQuiz button clicked
 continue_btn.onclick = ()=>{

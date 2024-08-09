@@ -1,15 +1,6 @@
-// creating an array and passing the number, questions, options, and answers
-function shuffleQuestions(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() *100 (i + 1));
-      //(parseInt(Math.random()*100 + 1))
-      [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+// creating an questions and passing the number, questions, options, and answers
 let questions = [
-  {
-    numb: 1,
+  { numb: 1,
     question: "Which of the following attributes is used to add link to any element?",
     answer: "href",
     options: [
@@ -131,4 +122,4 @@ let questions = [
   }
     
 ];
-questions = shuffleQuestions(questions); // Shuffle the questions array
+ 
